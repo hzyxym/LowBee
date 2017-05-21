@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LowBee</string>
+    <string name="sample_title_basic">DataBindingTest</string>
+    <string name="title_activity_databinding">databinding</string>
+    <string name="title_homeHome">首页</string>
+    <string name="title_homeAndroid">Android</string>
+    <string name="title_newsNew">消息</string>
+    <string name="title_newsDynamic">动态</string>
+    <string name="title_mime">我</string>
+</resources>
