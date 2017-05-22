@@ -2,7 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data></data>
+    <data>
+        <import type="com.example.cw.lowbee.model.Article"/>
+        <variable
+            name="article"
+            type="Article"/>
+    </data>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -43,7 +48,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="top"
-                        android:text="hzyxym"
+                        android:text="@{article.who}"
                         android:textColor="@color/text_blue"
                         android:textSize="12sp" />
 
@@ -53,7 +58,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="bottom"
-                        android:text="2017-5-22"
+                        android:text="@{article.publishedAt}"
                         android:textColor="@color/text_gray"
                         android:textSize="8sp" />
                 </LinearLayout>
@@ -63,16 +68,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:text="Android"
+                    android:text="@{article.type}"
                     android:textColor="@color/text_gray"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_black"
-                android:text="this is a describe.如果你仅仅是想简单下载一张网络图片，在下载完成之前，显示一张占位图，那么简单使用 SimpleDraweeView 即可。"/>
+                android:text="@{article.desc}"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
