@@ -10,5 +10,8 @@
     <color name="search_bg">#3399FF</color>
     <color name="line">#EEEEEE</color>
     <color name="fragment_bg">#F4F6F9</color>
+    <color name="text_blue">#275B8C</color>
+    <color name="text_gray">#B6B6B6</color>
+    <color name="text_black">#414447</color>
 
 </resources>

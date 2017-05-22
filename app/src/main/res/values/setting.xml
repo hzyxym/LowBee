@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 是否发布版本 -->
+    <string name="isrelease">false</string>
+
+    <!-- 是否测试服务器地址 -->
+    <string name="istestversion">true</string>
+
+    <!-- 若isrelease:false && istestversion:false ，则版本号为(build x RC) ，为正式环境测试包-->
+    <!-- 若isrelease:false && istestversion:true ，则版本号(build x ) ，为测试环境测试包-->
+
+  </resources>

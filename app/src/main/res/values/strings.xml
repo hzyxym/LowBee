@@ -7,4 +7,5 @@
     <string name="title_newsNew">消息</string>
     <string name="title_newsDynamic">动态</string>
     <string name="title_mime">我</string>
+    <string name="loading_failed">数据加载失败</string>
 </resources>
