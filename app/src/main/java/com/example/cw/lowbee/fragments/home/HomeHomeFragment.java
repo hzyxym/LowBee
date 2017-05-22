@@ -26,6 +26,7 @@ public class HomeHomeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         return inflater.inflate(R.layout.fragment_tab_home_home, container,false);
+        //改变了数据
     }
 
 }
