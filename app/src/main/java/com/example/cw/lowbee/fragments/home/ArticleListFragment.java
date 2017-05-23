@@ -3,7 +3,9 @@ package com.example.cw.lowbee.fragments.home;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +21,8 @@ import com.example.cw.lowbee.model.Article;
 import com.example.cw.lowbee.view.adapter.ArticleAdapter;
 
 import java.util.List;
+
+import rx.Observer;
 import rx.Subscriber;
 
 
@@ -39,9 +43,10 @@ public class ArticleListFragment extends BaseFragment {
     private ArticleAdapter adapter = new ArticleAdapter();
     private String mFragmentName = ALL_ARTICLES;
 
-    private Subscriber<List<Article>> subscriber = new Subscriber<List<Article>>() {
+    private Observer<List<Article>> observer = new Observer<List<Article>>() {
         @Override
         public void onCompleted() {
+            Log.i(LOWBEE,"------onCompleted------");
         }
 
         @Override
@@ -53,6 +58,7 @@ public class ArticleListFragment extends BaseFragment {
 
         @Override
         public void onNext(List<Article> articles) {
+            Log.i(LOWBEE,"------onNext------");
             binding.swipeRefreshLayout.setRefreshing(false);
             adapter.setArticles(articles);
         }
@@ -88,7 +94,19 @@ public class ArticleListFragment extends BaseFragment {
         binding.gridRv.setAdapter(adapter);
 
         binding.swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.GREEN, Color.RED, Color.YELLOW);
-        binding.swipeRefreshLayout.setEnabled(false);
+        binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if(mFragmentName.equals(ALL_ARTICLES)){
+                    getAllArticleHttpData();
+                    Log.i(LOWBEE,"getAllArticleHttpData" );
+                }else if(mFragmentName.equals(ANDROID_ARTICLES)){
+                    getAnroidArticleHttpData();
+                }else if(mFragmentName.equals(IOS_ARTICLES)){
+                    getIOSArticleHttpData();
+                }
+            }
+        });
         return view;
     }
 
@@ -106,17 +124,18 @@ public class ArticleListFragment extends BaseFragment {
 
     //获取干货所有文章数据（500条）
     private void getAllArticleHttpData(){
-        GankHttpMethods.getInstance().getGankAllArticle(subscriber);
+        GankHttpMethods.getInstance().getGankAllArticle(observer);
     }
 
-    //获取干货Android文章数据（500条）
+    //获取干货Android文章数据（100条）
     private void getAnroidArticleHttpData(){
-        GankHttpMethods.getInstance().getGankAndroidArticle(subscriber);
+        GankHttpMethods.getInstance().getGankAndroidArticle(observer);
     }
 
-    //获取干货IOS文章数据（500条）
+    //获取干货IOS文章数据（100条）
     private void getIOSArticleHttpData(){
-        GankHttpMethods.getInstance().getGankIOSArticle(subscriber);
+        GankHttpMethods.getInstance().getGankIOSArticle(observer);
+
     }
 
 }

@@ -14,6 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
+import rx.Observer;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
@@ -67,11 +68,11 @@ public class GankHttpMethods {
     }
 
     //统一回调到View层
-    private <T> void toSubscribe(Observable<T> o, Subscriber<T> s){
-        o.subscribeOn(Schedulers.io())
+    private <T> void toSubscribe(Observable<T> observable, Observer<T> observer){
+        observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s);
+                .subscribe(observer);
     }
 
     /**
@@ -90,31 +91,31 @@ public class GankHttpMethods {
 
     /**
      * 获取干货前500条ALL类型数据
-     * @param subscriber
+     * @param observer
      */
-    public void getGankAllArticle(Subscriber<List<Article>> subscriber){
+    public void getGankAllArticle(Observer<List<Article>> observer){
         Observable observable = api.getGankAll().map(new HttpResultFunc<List<Article>>());
 
-        toSubscribe(observable, subscriber);
+        toSubscribe(observable, observer);
     }
 
     /**
-     * 获取干货前500条Android类型数据
-     * @param subscriber
+     * 获取干货前100条Android类型数据
+     * @param observer
      */
-    public void getGankAndroidArticle(Subscriber<List<Article>> subscriber){
+    public void getGankAndroidArticle(Observer<List<Article>> observer){
         Observable observable = api.getGankAndroid().map(new HttpResultFunc<List<Article>>());
 
-        toSubscribe(observable, subscriber);
+        toSubscribe(observable, observer);
     }
 
     /**
-     * 获取干货前500条IOS类型数据
-     * @param subscriber
+     * 获取干货前100条IOS类型数据
+     * @param observer
      */
-    public void getGankIOSArticle(Subscriber<List<Article>> subscriber){
+    public void getGankIOSArticle(Observer<List<Article>> observer){
         Observable observable = api.getGankIOS().map(new HttpResultFunc<List<Article>>());
 
-        toSubscribe(observable, subscriber);
+        toSubscribe(observable, observer);
     }
 }

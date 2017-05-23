@@ -16,6 +16,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    /*signingConfigs {
+        configDebug {
+            keyAlias 'aliasdebugkey'
+            keyPassword 'android'
+            storeFile file('E:/Dr.COM.Debug.keystore')
+            storePassword 'android'
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.configDebug
+        }
+    }*/
     dataBinding {
         enabled true
     }
