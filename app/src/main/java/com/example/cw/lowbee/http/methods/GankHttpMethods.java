@@ -88,9 +88,32 @@ public class GankHttpMethods {
         }
     }
 
-    public void getGankAndroid(Subscriber<List<Article>> subscriber){
-        Observable observable = api.getGankAndroid()
-                .map(new HttpResultFunc<List<Article>>());
+    /**
+     * 获取干货前500条ALL类型数据
+     * @param subscriber
+     */
+    public void getGankAllArticle(Subscriber<List<Article>> subscriber){
+        Observable observable = api.getGankAll().map(new HttpResultFunc<List<Article>>());
+
+        toSubscribe(observable, subscriber);
+    }
+
+    /**
+     * 获取干货前500条Android类型数据
+     * @param subscriber
+     */
+    public void getGankAndroidArticle(Subscriber<List<Article>> subscriber){
+        Observable observable = api.getGankAndroid().map(new HttpResultFunc<List<Article>>());
+
+        toSubscribe(observable, subscriber);
+    }
+
+    /**
+     * 获取干货前500条IOS类型数据
+     * @param subscriber
+     */
+    public void getGankIOSArticle(Subscriber<List<Article>> subscriber){
+        Observable observable = api.getGankIOS().map(new HttpResultFunc<List<Article>>());
 
         toSubscribe(observable, subscriber);
     }

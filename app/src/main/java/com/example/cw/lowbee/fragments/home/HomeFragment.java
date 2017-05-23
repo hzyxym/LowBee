@@ -37,17 +37,19 @@ public class HomeFragment extends BaseFragment {
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return new HomeHomeFragment();
+                        return ArticleListFragment.newInstance(ArticleListFragment.ALL_ARTICLES);
                     case 1:
-                        return new HomeAndroidFragment();
+                        return ArticleListFragment.newInstance(ArticleListFragment.ANDROID_ARTICLES);
+                    case 2:
+                        return ArticleListFragment.newInstance(ArticleListFragment.IOS_ARTICLES);
                     default:
-                        return new HomeHomeFragment();
+                        return ArticleListFragment.newInstance(ArticleListFragment.ALL_ARTICLES);
                 }
             }
 
             @Override
             public int getCount() {
-                return 2;
+                return 3;
             }
 
             @Override
@@ -57,6 +59,8 @@ public class HomeFragment extends BaseFragment {
                         return getString(R.string.title_homeHome);
                     case 1:
                         return getString(R.string.title_homeAndroid);
+                    case 2:
+                        return getString(R.string.title_homeIOS);
                     default:
                         return getString(R.string.title_homeHome);
                 }
