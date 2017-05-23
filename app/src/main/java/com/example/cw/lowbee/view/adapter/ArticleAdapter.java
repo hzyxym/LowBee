@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.cw.lowbee.R;
 import com.example.cw.lowbee.databinding.ArticleItemBinding;
 import com.example.cw.lowbee.model.Article;
+import com.example.cw.lowbee.utils.ItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.List;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>{
     private List<Article> articles = new ArrayList<>();
+    private ItemClickListener mListener;
     @Override
     public ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.article_item, parent, false);
@@ -29,8 +31,16 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     }
 
     @Override
-    public void onBindViewHolder(ArticleViewHolder holder, int position) {
+    public void onBindViewHolder(ArticleViewHolder holder, final int position) {
         holder.bind(articles.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null){
+                    mListener.onItemClick(v,position);
+                }
+            }
+        });
     }
 
     @Override
@@ -41,6 +51,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     public void setArticles(List<Article> articles){
         this.articles = articles;
         notifyDataSetChanged();
+    }
+
+    public void setOnItemClickListener(ItemClickListener listener){
+        this.mListener = listener;
     }
 
     static class ArticleViewHolder extends RecyclerView.ViewHolder {

@@ -3,6 +3,7 @@ package com.example.cw.lowbee.activitys;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
 
 /**
  * Created by cw on 2017/5/19.
@@ -24,10 +25,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
-
-    public String getStringById(int id){
-        return this.getResources().getString(id);
     }
 
     public void onInitUI(){

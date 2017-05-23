@@ -7,6 +7,8 @@
         <item name="colorPrimaryDark">@color/colorStatusBar</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="toolbarStyle">@style/ClubToolbar</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <!-- 滑动返回 背景样式 -->

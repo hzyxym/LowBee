@@ -1,5 +1,6 @@
 package com.example.cw.lowbee.fragments.home;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,12 +15,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.cw.lowbee.R;
+import com.example.cw.lowbee.activitys.WebViewActivity;
 import com.example.cw.lowbee.databinding.FragmentTabHomeArticleBinding;
 import com.example.cw.lowbee.fragments.BaseFragment;
 import com.example.cw.lowbee.http.methods.GankHttpMethods;
 import com.example.cw.lowbee.model.Article;
+import com.example.cw.lowbee.utils.ItemClickListener;
 import com.example.cw.lowbee.view.adapter.ArticleAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observer;
@@ -42,11 +46,11 @@ public class ArticleListFragment extends BaseFragment {
     private FragmentTabHomeArticleBinding binding;
     private ArticleAdapter adapter = new ArticleAdapter();
     private String mFragmentName = ALL_ARTICLES;
+    private List<Article> mData = new ArrayList<>();
 
     private Observer<List<Article>> observer = new Observer<List<Article>>() {
         @Override
         public void onCompleted() {
-            Log.i(LOWBEE,"------onCompleted------");
         }
 
         @Override
@@ -58,9 +62,9 @@ public class ArticleListFragment extends BaseFragment {
 
         @Override
         public void onNext(List<Article> articles) {
-            Log.i(LOWBEE,"------onNext------");
             binding.swipeRefreshLayout.setRefreshing(false);
             adapter.setArticles(articles);
+            mData = articles;
         }
     };
 
@@ -85,7 +89,7 @@ public class ArticleListFragment extends BaseFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_tab_home_article, container,false);
 
@@ -93,13 +97,22 @@ public class ArticleListFragment extends BaseFragment {
         binding.gridRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.gridRv.setAdapter(adapter);
 
+        adapter.setOnItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                //do some thing
+                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                intent.putExtra(WebViewActivity.URL,mData.get(position).getUrl());
+                startActivity(intent);
+            }
+        });
+
         binding.swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.GREEN, Color.RED, Color.YELLOW);
         binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 if(mFragmentName.equals(ALL_ARTICLES)){
                     getAllArticleHttpData();
-                    Log.i(LOWBEE,"getAllArticleHttpData" );
                 }else if(mFragmentName.equals(ANDROID_ARTICLES)){
                     getAnroidArticleHttpData();
                 }else if(mFragmentName.equals(IOS_ARTICLES)){
