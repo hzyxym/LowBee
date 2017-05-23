@@ -24,7 +24,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onInitUI() {
         super.onInitUI();
-//        getSupportActionBar().hide();
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         mFragmensts = DataGenerator.getFragments("Tab");
         binding.bottomTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
