@@ -14,7 +14,7 @@ import rx.Observable;
 
 public interface GankApi {
 
-    @GET("data/all/500/1")
+    @GET("data/all/200/1")
     Observable<HttpResult<List<Article>>> getGankAll();
 
     @GET("data/Android/100/1")

@@ -3,6 +3,7 @@ package com.example.cw.lowbee.activitys;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.example.cw.lowbee.R;
 import com.example.cw.lowbee.databinding.ActivityWebviewBinding;
@@ -20,7 +21,7 @@ public class WebViewActivity extends BaseActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_webview);
-        setSupportActionBar(binding.toolbar);
+        binding.setPresenter(new Presenter());
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){
@@ -30,6 +31,17 @@ public class WebViewActivity extends BaseActivity{
         }
 
         binding.webview.loadUrl(mUrl);
+
+    }
+
+    public class Presenter {
+        public void onClickBack(View view){
+            WebViewActivity.this.finish();
+        }
+
+        public void onClickHeart(View view){
+            binding.setToggle(!binding.getToggle());
+        }
 
     }
 }

@@ -15,7 +15,8 @@
             android:layout_height="48dp"
             android:background="@color/colorToolbar"
             app:tabMode="fixed"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+            app:tabTextColor="@color/blue_white"
+            app:tabSelectedTextColor="@color/white"/>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"

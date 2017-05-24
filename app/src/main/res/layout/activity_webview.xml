@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data></data>
+    <data>
+        <variable
+            name="presenter"
+            type="com.example.cw.lowbee.activitys.WebViewActivity.Presenter"/>
+
+        <variable
+            name="toggle"
+            type="boolean"/>
+
+        <import type="android.graphics.Bitmap"/>
+        <variable
+            name="resHeartImag"
+            type="int"/>
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,6 +38,7 @@
                     android:layout_height="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_centerVertical="true"
+                    android:onClick="@{presenter.onClickBack}"
                     android:background="@drawable/left_arrow_selector" />
 
                 <TextView
@@ -79,7 +93,8 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/news_heart_selector"
+                android:onClick="@{presenter.onClickHeart}"
+                android:src="@{toggle ? @drawable/heart : @drawable/hollow_heart}"
                 />
 
             <ImageView

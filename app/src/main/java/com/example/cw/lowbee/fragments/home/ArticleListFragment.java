@@ -107,7 +107,7 @@ public class ArticleListFragment extends BaseFragment {
             }
         });
 
-        binding.swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.GREEN, Color.RED, Color.YELLOW);
+        binding.swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW);
         binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -135,7 +135,7 @@ public class ArticleListFragment extends BaseFragment {
         }
     }
 
-    //获取干货所有文章数据（500条）
+    //获取干货所有文章数据（200条）
     private void getAllArticleHttpData(){
         GankHttpMethods.getInstance().getGankAllArticle(observer);
     }

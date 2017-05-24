@@ -90,7 +90,7 @@ public class GankHttpMethods {
     }
 
     /**
-     * 获取干货前500条ALL类型数据
+     * 获取干货前200条ALL类型数据
      * @param observer
      */
     public void getGankAllArticle(Observer<List<Article>> observer){
