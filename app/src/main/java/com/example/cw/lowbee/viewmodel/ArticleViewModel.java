@@ -7,6 +7,8 @@ import com.example.cw.lowbee.BR;
 import com.example.cw.lowbee.R;
 import com.example.cw.lowbee.model.Article;
 
+import java.util.List;
+
 import me.tatarka.bindingcollectionadapter2.ItemBinding;
 
 /**
@@ -14,6 +16,13 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding;
  */
 
 public class ArticleViewModel {
-    public final ObservableList<Article> Items = new ObservableArrayList<>();
-    public final ItemBinding<Article> Item = ItemBinding.of(BR.article, R.layout.article_item);
+    public final ObservableList<Article> items = new ObservableArrayList<>();
+    public final ItemBinding<Article> itemView = ItemBinding.of(BR.article, R.layout.article_item);
+
+    public ArticleViewModel(){
+    }
+
+    public void setItems(List<Article> items) {
+        this.items.addAll(items);
+    }
 }

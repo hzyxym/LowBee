@@ -20,6 +20,7 @@ import com.example.cw.lowbee.fragments.BaseFragment;
 import com.example.cw.lowbee.http.methods.GankHttpMethods;
 import com.example.cw.lowbee.model.Article;
 import com.example.cw.lowbee.utils.ItemClickListener;
+import com.example.cw.lowbee.viewmodel.ArticleViewModel;
 import com.example.cw.lowbee.viewmodel.adapter.ArticleAdapter;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class ArticleListFragment extends BaseFragment {
     private ArticleAdapter adapter = new ArticleAdapter();
     private String mFragmentName = ALL_ARTICLES;
     private List<Article> mData = new ArrayList<>();
+    private ArticleViewModel viewModel;
 
     private Observer<List<Article>> observer = new Observer<List<Article>>() {
         @Override
@@ -62,6 +64,8 @@ public class ArticleListFragment extends BaseFragment {
             binding.swipeRefreshLayout.setRefreshing(false);
             adapter.setArticles(articles);
             mData = articles;
+
+            viewModel.setItems(articles);
         }
     };
 
@@ -89,8 +93,10 @@ public class ArticleListFragment extends BaseFragment {
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_tab_home_article,container,false);
-
-        binding.gridRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        viewModel = new ArticleViewModel();
+        viewModel.setItems(mData);
+        binding.setViewModel(viewModel);
+        /*binding.gridRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.gridRv.setAdapter(adapter);
 
         adapter.setOnItemClickListener(new ItemClickListener() {
@@ -116,7 +122,7 @@ public class ArticleListFragment extends BaseFragment {
                     getIOSArticleHttpData();
                 }
             }
-        });
+        });*/
         return binding.getRoot();
     }
 
