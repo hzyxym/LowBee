@@ -23,7 +23,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/fragment_bg"
                 app:items="@{viewModel.items}"
-                app:itemview="@{viewModel.itemView}"
+                app:itemBinding="@{viewModel.itemView}"
                 app:layoutManager="@{LayoutManagers.linear()}"/>
 
         </android.support.v4.widget.SwipeRefreshLayout>
