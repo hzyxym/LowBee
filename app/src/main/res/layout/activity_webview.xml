@@ -10,10 +10,13 @@
             name="toggle"
             type="boolean"/>
 
-        <import type="android.graphics.Bitmap"/>
         <variable
             name="resHeartImag"
             type="int"/>
+
+        <variable
+            name="Author"
+            type="String"/>
     </data>
 
     <LinearLayout
@@ -47,7 +50,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_toRightOf="@id/iv_back"
                     android:layout_centerVertical="true"
-                    android:text="hzyxmy"
+                    android:text="@{Author}"
                     android:textColor="@color/white"
                     android:textSize="20sp"/>
 

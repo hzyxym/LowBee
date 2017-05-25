@@ -1,5 +1,8 @@
 package com.example.cw.lowbee.model;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,16 +10,21 @@ import java.util.List;
  * Created by cw on 2017/5/22.
  */
 
-public class Article {
+public class Article extends BaseObservable {
     private String _id = "";
     private String createdAt = "";
+    @Bindable
     private String desc = "";
     private List<String> images = new ArrayList<>();
+    @Bindable
     private String publishedAt = "";
     private String source = "";
+    @Bindable
     private String type = "";
+    @Bindable
     private String url = "";
     private boolean used = false;
+    @Bindable
     private String who = "";
 
     public String get_id() {
@@ -97,5 +105,6 @@ public class Article {
 
     public void setWho(String who) {
         this.who = who;
+        notifyChange();
     }
 }

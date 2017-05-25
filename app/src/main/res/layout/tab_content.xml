@@ -17,6 +17,6 @@
             android:id="@+id/tab_content_image"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/tab_home_selector"/>
+            android:src="@drawable/tab_home"/>
     </LinearLayout>
 </layout>

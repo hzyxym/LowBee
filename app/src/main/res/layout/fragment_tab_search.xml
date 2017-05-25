@@ -14,7 +14,9 @@
             android:background="@color/colorToolbar"
             android:minHeight="?attr/actionBarSize"
             android:fitsSystemWindows="true"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            app:tabTextColor="@color/blue_white"
+            app:tabSelectedTextColor="@color/white">
             <android.support.v7.widget.SearchView
                 android:layout_width="match_parent"
                 android:layout_height="32dp"

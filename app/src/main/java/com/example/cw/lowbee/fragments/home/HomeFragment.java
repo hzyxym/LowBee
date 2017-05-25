@@ -24,13 +24,13 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        return inflater.inflate(R.layout.fragment_tab_home, container,false);
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_tab_home,container,false);
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding = DataBindingUtil.bind(view);
 
         binding.viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override

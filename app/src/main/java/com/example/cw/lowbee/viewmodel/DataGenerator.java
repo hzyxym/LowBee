@@ -1,4 +1,4 @@
-package com.example.cw.lowbee.view;
+package com.example.cw.lowbee.viewmodel;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
@@ -18,7 +18,7 @@ import com.example.cw.lowbee.fragments.search.SearchFragment;
  */
 
 public class DataGenerator {
-    public static final int []mTabRes = new int[]{R.drawable.tab_home_selector,R.drawable.tab_search_selector,R.drawable.tab_news_selector,R.drawable.tab_mine_selector};
+    public static final int []mTabRes = new int[]{R.drawable.tab_home,R.drawable.tab_search,R.drawable.tab_news,R.drawable.tab_mine};
     public static final int []mTabResPressed = new int[]{R.drawable.tab_home_c,R.drawable.tab_search_c,R.drawable.tab_news_c,R.drawable.tab_mine_c};
     public static Fragment[] getFragments(String from){
         Fragment fragments[] = new Fragment[4];
@@ -36,10 +36,9 @@ public class DataGenerator {
      * @return
      */
     public static View getTabView(Context context, int position){
-        View view = LayoutInflater.from(context).inflate(R.layout.tab_content,null);
-        TabContentBinding binding = DataBindingUtil.bind(view);
+        TabContentBinding binding = DataBindingUtil.bind(LayoutInflater.from(context).inflate(R.layout.tab_content,null));
         binding.tabContentImage.setImageResource(DataGenerator.mTabRes[position]);
-        return view;
+        return binding.getRoot();
     }
 
 }

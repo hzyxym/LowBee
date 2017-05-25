@@ -9,7 +9,7 @@ import android.view.View;
 import com.example.cw.lowbee.R;
 import com.example.cw.lowbee.databinding.ActivityMainBinding;
 import com.example.cw.lowbee.databinding.TabContentBinding;
-import com.example.cw.lowbee.view.DataGenerator;
+import com.example.cw.lowbee.viewmodel.DataGenerator;
 
 public class MainActivity extends BaseActivity {
 
@@ -27,6 +27,7 @@ public class MainActivity extends BaseActivity {
         super.onInitUI();
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         mFragmensts = DataGenerator.getFragments("Tab");
+
         binding.bottomTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -52,6 +53,7 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+
         // 提供自定义的布局添加Tab
         for(int i=0;i<mFragmensts.length;i++){
             binding.bottomTabLayout.addTab(binding.bottomTabLayout.newTab().setCustomView(DataGenerator.getTabView(this,i)));

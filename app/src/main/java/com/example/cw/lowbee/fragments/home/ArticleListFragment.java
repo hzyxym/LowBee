@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,13 +20,12 @@ import com.example.cw.lowbee.fragments.BaseFragment;
 import com.example.cw.lowbee.http.methods.GankHttpMethods;
 import com.example.cw.lowbee.model.Article;
 import com.example.cw.lowbee.utils.ItemClickListener;
-import com.example.cw.lowbee.view.adapter.ArticleAdapter;
+import com.example.cw.lowbee.viewmodel.adapter.ArticleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observer;
-import rx.Subscriber;
 
 
 /**
@@ -38,7 +36,6 @@ public class ArticleListFragment extends BaseFragment {
     public static final String ALL_ARTICLES = "All_Articles";
     public static final String ANDROID_ARTICLES = "Android_Articles";
     public static final String IOS_ARTICLES = "IOS_Articles";
-    public static final String SEARCH_ARTICLES = "Search_Articles";
 
     private static final String LOWBEE = "LowBee";
     private static final String FRAGMENTNAME = "FragmentName";
@@ -91,9 +88,8 @@ public class ArticleListFragment extends BaseFragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_tab_home_article, container,false);
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_tab_home_article,container,false);
 
-        binding = DataBindingUtil.bind(view);
         binding.gridRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.gridRv.setAdapter(adapter);
 
@@ -103,6 +99,7 @@ public class ArticleListFragment extends BaseFragment {
                 //do some thing
                 Intent intent = new Intent(getActivity(), WebViewActivity.class);
                 intent.putExtra(WebViewActivity.URL,mData.get(position).getUrl());
+                intent.putExtra(WebViewActivity.AUTHOR,mData.get(position).getWho());
                 startActivity(intent);
             }
         });
@@ -120,7 +117,7 @@ public class ArticleListFragment extends BaseFragment {
                 }
             }
         });
-        return view;
+        return binding.getRoot();
     }
 
     @Override
