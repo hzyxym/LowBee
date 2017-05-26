@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.support.design.widget.TabLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 
 import com.example.cw.lowbee.R;
@@ -32,7 +33,6 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 onTabItemSelected(tab.getPosition());
-
                 for (int i=0;i<binding.bottomTabLayout.getTabCount();i++){
                     View view = binding.bottomTabLayout.getTabAt(i).getCustomView();
                     TabContentBinding binding = DataBindingUtil.bind(view);

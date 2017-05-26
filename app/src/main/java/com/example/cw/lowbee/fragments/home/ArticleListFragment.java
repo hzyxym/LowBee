@@ -43,9 +43,7 @@ public class ArticleListFragment extends BaseFragment {
     private static final String FRAGMENTNAME = "FragmentName";
 
     private FragmentTabHomeArticleBinding binding;
-    private ArticleAdapter adapter = new ArticleAdapter();
     private String mFragmentName = ALL_ARTICLES;
-    private List<Article> mData = new ArrayList<>();
     private ArticleViewModel viewModel;
 
     private Observer<List<Article>> observer = new Observer<List<Article>>() {
@@ -55,17 +53,12 @@ public class ArticleListFragment extends BaseFragment {
 
         @Override
         public void onError(Throwable e) {
-            binding.swipeRefreshLayout.setRefreshing(false);
             Toast.makeText(getActivity(), R.string.loading_failed, Toast.LENGTH_SHORT).show();
             Log.e(LOWBEE,"Error Messge:"+e.toString());
         }
 
         @Override
         public void onNext(List<Article> articles) {
-            binding.swipeRefreshLayout.setRefreshing(false);
-            adapter.setArticles(articles);
-            mData = articles;
-
             viewModel.setItems(articles);
         }
     };
@@ -85,10 +78,8 @@ public class ArticleListFragment extends BaseFragment {
         Bundle bundle = getArguments();
         if(bundle != null){
             mFragmentName = bundle.getString(FRAGMENTNAME).toString();
-            Log.i(LOWBEE,"Fragment Name:" + mFragmentName);
         }
     }
-
 
     @Nullable
     @Override
@@ -96,36 +87,8 @@ public class ArticleListFragment extends BaseFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_tab_home_article,container,false);
         viewModel = new ArticleViewModel();
-        viewModel.setItems(mData);
         binding.setViewModel(viewModel);
-
-        /*binding.gridRv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.gridRv.setAdapter(adapter);
-
-        adapter.setOnItemClickListener(new ItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                //do some thing
-                Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                intent.putExtra(WebViewActivity.URL,mData.get(position).getUrl());
-                intent.putExtra(WebViewActivity.AUTHOR,mData.get(position).getWho());
-                startActivity(intent);
-            }
-        });
-
-        binding.swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW);
-        binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                if(mFragmentName.equals(ALL_ARTICLES)){
-                    getAllArticleHttpData();
-                }else if(mFragmentName.equals(ANDROID_ARTICLES)){
-                    getAnroidArticleHttpData();
-                }else if(mFragmentName.equals(IOS_ARTICLES)){
-                    getIOSArticleHttpData();
-                }
-            }
-        });*/
+        binding.setTitle(mFragmentName);
         return binding.getRoot();
     }
 
@@ -133,28 +96,14 @@ public class ArticleListFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if(mFragmentName.equals(ALL_ARTICLES)){
-            getAllArticleHttpData();
+            //获取干货所有文章数据（200条）
+            GankHttpMethods.getInstance().getGankAllArticle(observer);
         }else if(mFragmentName.equals(ANDROID_ARTICLES)){
-            getAnroidArticleHttpData();
+            //获取干货Android文章数据（100条）
+            GankHttpMethods.getInstance().getGankAndroidArticle(observer);
         }else if(mFragmentName.equals(IOS_ARTICLES)){
-            getIOSArticleHttpData();
+            //获取干货IOS文章数据（100条）
+            GankHttpMethods.getInstance().getGankIOSArticle(observer);
         }
     }
-
-    //获取干货所有文章数据（200条）
-    private void getAllArticleHttpData(){
-        GankHttpMethods.getInstance().getGankAllArticle(observer);
-    }
-
-    //获取干货Android文章数据（100条）
-    private void getAnroidArticleHttpData(){
-        GankHttpMethods.getInstance().getGankAndroidArticle(observer);
-    }
-
-    //获取干货IOS文章数据（100条）
-    private void getIOSArticleHttpData(){
-        GankHttpMethods.getInstance().getGankIOSArticle(observer);
-
-    }
-
 }
