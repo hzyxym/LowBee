@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.cw.lowbee.R;
@@ -34,7 +33,7 @@ import rx.Observer;
  * Created by cw on 2017/5/20.
  */
 
-public class ArticleListFragment extends BaseFragment {
+public class ArticleListFragmentBU extends BaseFragment {
     public static final String ALL_ARTICLES = "All_Articles";
     public static final String ANDROID_ARTICLES = "Android_Articles";
     public static final String IOS_ARTICLES = "IOS_Articles";
@@ -46,7 +45,6 @@ public class ArticleListFragment extends BaseFragment {
     private ArticleAdapter adapter = new ArticleAdapter();
     private String mFragmentName = ALL_ARTICLES;
     private List<Article> mData = new ArrayList<>();
-    private ArticleViewModel viewModel;
 
     private Observer<List<Article>> observer = new Observer<List<Article>>() {
         @Override
@@ -65,16 +63,14 @@ public class ArticleListFragment extends BaseFragment {
             binding.swipeRefreshLayout.setRefreshing(false);
             adapter.setArticles(articles);
             mData = articles;
-
-            viewModel.setItems(articles);
         }
     };
 
     //带参数实例化Fragement
-    public static ArticleListFragment newInstance(String name) {
+    public static ArticleListFragmentBU newInstance(String name) {
         Bundle args = new Bundle();
         args.putString(FRAGMENTNAME, name);
-        ArticleListFragment fragment = new ArticleListFragment();
+        ArticleListFragmentBU fragment = new ArticleListFragmentBU();
         fragment.setArguments(args);
         return fragment;
     }
@@ -89,17 +85,12 @@ public class ArticleListFragment extends BaseFragment {
         }
     }
 
-
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_tab_home_article,container,false);
-        viewModel = new ArticleViewModel();
-        viewModel.setItems(mData);
-        binding.setViewModel(viewModel);
-
-        /*binding.gridRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.gridRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.gridRv.setAdapter(adapter);
 
         adapter.setOnItemClickListener(new ItemClickListener() {
@@ -125,7 +116,7 @@ public class ArticleListFragment extends BaseFragment {
                     getIOSArticleHttpData();
                 }
             }
-        });*/
+        });
         return binding.getRoot();
     }
 
