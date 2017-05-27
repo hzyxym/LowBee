@@ -5,6 +5,7 @@ import android.databinding.BindingAdapter;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 import android.graphics.Color;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -46,12 +47,12 @@ public class ArticleViewModel {
         }
     };
 
-    public void setItems(List<Article> items) {
+    public void RefreshArticles(List<Article> items) {
         this.items.clear();
         this.items.addAll(items);
     }
     @BindingAdapter("refresh")
-    public static void setSwipeRefreshLayoutProperty(final View view, final String str){
+    public static void setPropertySwipeRefreshLayout(final View view, final String str){
         ((SwipeRefreshLayout)view).setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW);
         ((SwipeRefreshLayout)view).setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -61,7 +62,8 @@ public class ArticleViewModel {
         });
     }
 
-    private static void getHttpData(final SwipeRefreshLayout view, String str) {
+    @Nullable
+    private static void getHttpData(@Nullable final SwipeRefreshLayout view, String str) {
         Observer<List<Article>> observer = new Observer<List<Article>>() {
             @Override
             public void onCompleted() {
@@ -69,14 +71,18 @@ public class ArticleViewModel {
 
             @Override
             public void onError(Throwable e) {
-                view.setRefreshing(false);
+                if(view != null){
+                    view.setRefreshing(false);
+                }
             }
 
             @Override
             public void onNext(List<Article> articles) {
-                view.setRefreshing(false);
                 items.clear();
                 items.addAll(articles);
+                if(view != null){
+                    view.setRefreshing(false);
+                }
             }
         };
 

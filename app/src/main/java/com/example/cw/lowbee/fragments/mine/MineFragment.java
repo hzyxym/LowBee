@@ -12,6 +12,7 @@ import com.example.cw.lowbee.R;
 import com.example.cw.lowbee.databinding.FragmentTabMineBinding;
 import com.example.cw.lowbee.databinding.FragmentTabSearchBinding;
 import com.example.cw.lowbee.fragments.BaseFragment;
+import com.example.cw.lowbee.viewmodel.MineViewModel;
 
 /**
  * Created by cw on 2017/5/20.
@@ -19,6 +20,7 @@ import com.example.cw.lowbee.fragments.BaseFragment;
 
 public class MineFragment extends BaseFragment {
     private FragmentTabMineBinding binding;
+    private MineViewModel viewModel;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -31,7 +33,10 @@ public class MineFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding = DataBindingUtil.bind(view);
-        Uri uri = Uri.parse("https://avatars0.githubusercontent.com/u/9972897?v=3");
-        binding.mineHead.setImageURI(uri);
+        viewModel = new MineViewModel();
+        binding.setUrl("https://avatars0.githubusercontent.com/u/9972897?v=3");
+        binding.setViewModel(viewModel);
+//        Uri uri = Uri.parse("https://avatars0.githubusercontent.com/u/9972897?v=3");
+//        binding.mineHead.setImageURI(uri);
     }
 }
