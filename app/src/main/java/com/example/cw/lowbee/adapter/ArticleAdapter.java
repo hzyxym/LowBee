@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.example.cw.lowbee.R;
 import com.example.cw.lowbee.databinding.ArticleItemBinding;
 import com.example.cw.lowbee.model.Article;
-import com.example.cw.lowbee.utils.ItemClickListener;
+import com.example.cw.lowbee.utils.interfaces.ItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;

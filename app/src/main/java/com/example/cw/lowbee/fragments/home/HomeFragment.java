@@ -18,7 +18,6 @@ import com.example.cw.lowbee.fragments.BaseFragment;
  */
 
 public class HomeFragment extends BaseFragment {
-
     private FragmentTabHomeBinding binding;
     @Nullable
     @Override

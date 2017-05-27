@@ -19,7 +19,7 @@ import com.example.cw.lowbee.databinding.FragmentTabHomeArticleBinding;
 import com.example.cw.lowbee.fragments.BaseFragment;
 import com.example.cw.lowbee.http.methods.GankHttpMethods;
 import com.example.cw.lowbee.model.Article;
-import com.example.cw.lowbee.utils.ItemClickListener;
+import com.example.cw.lowbee.utils.interfaces.ItemClickListener;
 import com.example.cw.lowbee.adapter.ArticleAdapter;
 
 import java.util.ArrayList;

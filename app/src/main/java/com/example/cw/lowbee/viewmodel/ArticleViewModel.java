@@ -59,7 +59,6 @@ public class ArticleViewModel {
                 getHttpData(((SwipeRefreshLayout)view),str);
             }
         });
-
     }
 
     private static void getHttpData(final SwipeRefreshLayout view, String str) {

@@ -33,6 +33,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 onTabItemSelected(tab.getPosition());
+
                 for (int i=0;i<binding.bottomTabLayout.getTabCount();i++){
                     View view = binding.bottomTabLayout.getTabAt(i).getCustomView();
                     TabContentBinding binding = DataBindingUtil.bind(view);
@@ -45,7 +46,6 @@ public class MainActivity extends BaseActivity {
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
@@ -69,7 +69,6 @@ public class MainActivity extends BaseActivity {
             case 1:
                 fragment = mFragmensts[1];
                 break;
-
             case 2:
                 fragment = mFragmensts[2];
                 break;
