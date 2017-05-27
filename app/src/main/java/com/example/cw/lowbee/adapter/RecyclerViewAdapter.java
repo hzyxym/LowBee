@@ -1,8 +1,7 @@
-package com.example.cw.lowbee.viewmodel.adapter;
+package com.example.cw.lowbee.adapter;
 
 import android.databinding.ViewDataBinding;
 import android.support.annotation.LayoutRes;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 

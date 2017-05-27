@@ -20,8 +20,7 @@ import com.example.cw.lowbee.fragments.BaseFragment;
 import com.example.cw.lowbee.http.methods.GankHttpMethods;
 import com.example.cw.lowbee.model.Article;
 import com.example.cw.lowbee.utils.ItemClickListener;
-import com.example.cw.lowbee.viewmodel.ArticleViewModel;
-import com.example.cw.lowbee.viewmodel.adapter.ArticleAdapter;
+import com.example.cw.lowbee.adapter.ArticleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

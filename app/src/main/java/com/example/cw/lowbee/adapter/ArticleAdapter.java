@@ -1,4 +1,4 @@
-package com.example.cw.lowbee.viewmodel.adapter;
+package com.example.cw.lowbee.adapter;
 
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;

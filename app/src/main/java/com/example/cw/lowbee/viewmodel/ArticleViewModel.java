@@ -7,9 +7,7 @@ import android.databinding.ObservableList;
 import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.cw.lowbee.BR;
 import com.example.cw.lowbee.R;
@@ -17,7 +15,7 @@ import com.example.cw.lowbee.activitys.WebViewActivity;
 import com.example.cw.lowbee.fragments.home.ArticleListFragment;
 import com.example.cw.lowbee.http.methods.GankHttpMethods;
 import com.example.cw.lowbee.model.Article;
-import com.example.cw.lowbee.viewmodel.adapter.RecyclerViewAdapter;
+import com.example.cw.lowbee.adapter.RecyclerViewAdapter;
 
 import java.util.List;
 

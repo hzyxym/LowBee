@@ -1,30 +1,21 @@
 package com.example.cw.lowbee.fragments.home;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.cw.lowbee.R;
-import com.example.cw.lowbee.activitys.WebViewActivity;
 import com.example.cw.lowbee.databinding.FragmentTabHomeArticleBinding;
 import com.example.cw.lowbee.fragments.BaseFragment;
 import com.example.cw.lowbee.http.methods.GankHttpMethods;
 import com.example.cw.lowbee.model.Article;
-import com.example.cw.lowbee.utils.ItemClickListener;
 import com.example.cw.lowbee.viewmodel.ArticleViewModel;
-import com.example.cw.lowbee.viewmodel.adapter.ArticleAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observer;
